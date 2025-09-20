@@ -16,7 +16,7 @@ const appState = {
 };
 
 // Encrypted OpenAI API Key (Base64 encoded for security)
-const ENCRYPTED_API_KEY = btoa('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');
+const ENCRYPTED_API_KEY = btoa('AIzaSyDAmxok_t80xy5IsErKc5wcqlJkYWusIDk');
 
 function decryptApiKey() {
     try {
