@@ -77,11 +77,10 @@ career-grimoire/
 ## 👨‍💻 Contributors
 
 - Vijay  
-- Sundhar  
+- sanjaiy 
 - Sabari  
-- Yukesh  
-- Yashika  
-- Ravi  
+- om prakash 
+   
 
 ---
 
