@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Grimoire - Ultimate Career Development Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav hidden" id="mainNav">
+        <div class="nav__container">
+            <div class="nav__brand">
+                <h3>🔮 Career Grimoire</h3>
+            </div>
+            <div class="nav__menu">
+                <button class="nav__item" data-section="dashboard">Dashboard</button>
+                <button class="nav__item" data-section="skills-assessment">Skills Assessment</button>
+                <button class="nav__item" data-section="skills">Learn Skills</button>
+                <button class="nav__item" data-section="chatbot">AI Mentor</button>
+                <button class="nav__item" data-section="profile">Profile</button>
+                <button class="nav__item" data-section="resume">Resume</button>
+                <button class="nav__item" onclick="logout()" style="background: var(--color-error); color: var(--color-btn-primary-text); border-radius: var(--radius-base);">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Landing Section -->
+        <section id="landing" class="section section--landing">
+            <div class="landing">
+                <div class="landing__content">
+                    <h1 class="landing__title">🔮 Career Grimoire</h1>
+                    <p class="landing__subtitle">Master 150+ skills with personalized AI recommendations and comprehensive career tracking</p>
+                    <div class="auth-choice">
+                        <button class="btn btn--primary btn--lg" onclick="showAuthForm('register')">New User</button>
+                        <button class="btn btn--outline btn--lg" onclick="showAuthForm('login')">Existing User</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authentication Forms -->
+        <section id="auth" class="section section--auth hidden">
+            <!-- Registration Form -->
+            <div id="registerForm" class="auth-form hidden">
+                <div class="auth-card">
+                    <h2>Create New Account</h2>
+                    <form onsubmit="register(event)">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="regName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Age</label>
+                            <input type="number" class="form-control" id="regAge" min="16" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="regEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mobile Number</label>
+                            <input type="tel" class="form-control" id="regMobile" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" id="regPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Register & Start Journey</button>
+                    </form>
+                    <p class="auth-switch">Already have an account? <button onclick="showAuthForm('login')" class="link-btn">Login here</button></p>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form hidden">
+                <div class="auth-card">
+                    <h2>Welcome Back</h2>
+                    <form onsubmit="login(event)">
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Login to Dashboard</button>
+                    </form>
+                    <p class="auth-switch">New user? <button onclick="showAuthForm('register')" class="link-btn">Register here</button></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comprehensive Skills Assessment Section -->
+        <section id="skills-assessment" class="section section--skills-assessment hidden">
+            <div class="skills-assessment">
+                <div class="skills-assessment__header">
+                    <h2>Tell Us About Your Skills</h2>
+                    <p>Select all skills you have or want to learn. We'll create personalized recommendations for you.</p>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-bar__fill" id="skillsProgress"></div>
+                        </div>
+                        <span class="progress-text">0 skills selected</span>
+                    </div>
+                </div>
+
+                <div class="skills-categories-grid">
+                    <!-- Technology & Development -->
+                    <div class="skill-category-card">
+                        <div class="category-card-header">
+                            <h3>💻 Technology & Development</h3>
+                            <p>Programming, Web Development, and Software Engineering</p>
+                        </div>
+                        <div class="skills-list">
+                            <label class="skill-checkbox"><input type="checkbox" value="Frontend Development">Frontend Development (HTML, CSS, JS, React, Angular)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Backend Development">Backend Development (Node.js, PHP, Python, Java, C#)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Full Stack Development">Full Stack Development</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Mobile App Development">Mobile App Development (Android, iOS, Flutter, React Native)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Game Development">Game Development (Unity, Unreal Engine, Godot)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Cybersecurity">Cybersecurity / Ethical Hacking</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="AI & Machine Learning">Artificial Intelligence & Machine Learning</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Data Science">Data Science & Big Data</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Cloud Computing">Cloud Computing (AWS, Azure, GCP)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Blockchain">Blockchain & Web3</label>
+                        </div>
+                    </div>
+
+                    <!-- Creative & Design -->
+                    <div class="skill-category-card">
+                        <div class="category-card-header">
+                            <h3>🎨 Creative & Design</h3>
+                            <p>Visual Arts, Video Production, and Design Tools</p>
+                        </div>
+                        <div class="skills-list">
+                            <label class="skill-checkbox"><input type="checkbox" value="Video Editing">Video Editing</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Graphic Design">Graphic Design (Photoshop, Illustrator, Canva)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="UI/UX Design">UI/UX Design (Figma, Adobe XD, Sketch)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="3D Modeling">3D Modeling & Animation (Blender, Maya, Cinema4D)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Music Production">Music Production & Sound Editing</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Photography">Photography & Cinematography</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Writing">Writing & Content Creation</label>
+                        </div>
+                    </div>
+
+                    <!-- Business & Marketing -->
+                    <div class="skill-category-card">
+                        <div class="category-card-header">
+                            <h3>💼 Business & Marketing</h3>
+                            <p>Digital Marketing, Business Strategy, and Sales</p>
+                        </div>
+                        <div class="skills-list">
+                            <label class="skill-checkbox"><input type="checkbox" value="Digital Marketing">Digital Marketing (SEO, SEM, Social Media Ads)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Affiliate Marketing">Affiliate Marketing</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Copywriting">Copywriting</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Business Strategy">Business Strategy & Startup Skills</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Project Management">Project Management (Agile, Scrum, Kanban)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Sales">Sales & Negotiation</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Finance">Finance & Investment Skills</label>
+                        </div>
+                    </div>
+
+                    <!-- Personal Development -->
+                    <div class="skill-category-card">
+                        <div class="category-card-header">
+                            <h3>🚀 Personal Development</h3>
+                            <p>Soft Skills, Leadership, and Communication</p>
+                        </div>
+                        <div class="skills-list">
+                            <label class="skill-checkbox"><input type="checkbox" value="Communication Skills">Communication Skills</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Leadership">Leadership & Team Management</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Critical Thinking">Critical Thinking & Problem-Solving</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Public Speaking">Public Speaking</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Emotional Intelligence">Emotional Intelligence</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Time Management">Time Management</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Productivity Systems">Productivity Systems</label>
+                        </div>
+                    </div>
+
+                    <!-- Career & Other Skills -->
+                    <div class="skill-category-card">
+                        <div class="category-card-header">
+                            <h3>🎓 Career & Other Skills</h3>
+                            <p>Professional Skills, Language Learning, and Specialized Areas</p>
+                        </div>
+                        <div class="skills-list">
+                            <label class="skill-checkbox"><input type="checkbox" value="Teaching">Teaching & Training</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Language Learning">Language Learning (English, Spanish, German, etc.)</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Health Coaching">Health & Fitness Coaching</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Cooking">Cooking & Culinary Skills</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Trading">Stock Market & Crypto Trading</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Entrepreneurship">Entrepreneurship & Innovation</label>
+                            <label class="skill-checkbox"><input type="checkbox" value="Research">Research & Academic Writing</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="custom-skill-section">
+                    <h3>Don't see your skill? Add it manually!</h3>
+                    <div class="custom-skill-input">
+                        <input type="text" class="form-control" id="customSkill" placeholder="Enter your custom skill...">
+                        <button class="btn btn--outline" onclick="addCustomSkill()">Add Skill</button>
+                    </div>
+                    <div class="custom-skills-list" id="customSkillsList"></div>
+                </div>
+
+                <div class="skills-assessment-actions">
+                    <button class="btn btn--primary btn--lg" onclick="saveSkillsAssessment()">Save & Continue</button>
+                    <button class="btn btn--outline btn--lg" onclick="skipSkillsAssessment()">Skip for Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Chatbot Section -->
+        <section id="chatbot" class="section section--chatbot hidden">
+            <div class="chatbot-container">
+                <div class="chatbot-header">
+                    <h2>🤖 AI Career Mentor</h2>
+                    <p>Get personalized career guidance with voice interaction</p>
+                    <div class="chatbot-status">
+                        <span class="status-indicator online"></span>
+                        <span>AI Mentor Online</span>
+                    </div>
+                </div>
+
+                <div class="chat-window" id="chatWindow">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message ai-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>Hello! I'm your AI Career Mentor. I can help you with:</p>
+                                <ul>
+                                    <li>Course recommendations based on your skills</li>
+                                    <li>Career guidance and development</li>
+                                    <li>Learning path suggestions</li>
+                                    <li>Industry insights and trends</li>
+                                </ul>
+                                <p>How can I assist you today?</p>
+                            </div>
+                            <div class="message-actions">
+                                <button class="voice-btn" onclick="speakMessage(this)" title="Listen">🔊</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="typing-indicator hidden" id="typingIndicator">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span>AI is thinking...</span>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <textarea class="chat-input" id="chatInput" placeholder="Ask me about your career..." rows="1"></textarea>
+                        <div class="chat-buttons">
+                            <button class="voice-record-btn" id="voiceRecordBtn" onclick="toggleVoiceRecording()" title="Voice Input">
+                                🎤
+                            </button>
+                            <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="Send Message">
+                                ➤
+                            </button>
+                        </div>
+                    </div>
+                    <div class="voice-status hidden" id="voiceStatus">
+                        <div class="voice-animation">
+                            <div class="voice-wave"></div>
+                            <div class="voice-wave"></div>
+                            <div class="voice-wave"></div>
+                        </div>
+                        <span>Listening...</span>
+                    </div>
+                </div>
+
+                <div class="chat-actions">
+                    <button class="btn btn--outline btn--sm" onclick="clearChat()">Clear Chat</button>
+                    <button class="btn btn--outline btn--sm" onclick="exportChat()">Export Chat</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section section--dashboard hidden">
+            <div class="dashboard">
+                <div class="dashboard__header">
+                    <div class="dashboard__welcome">
+                        <h2>Welcome back, <span id="dashboardName">User</span>!</h2>
+                        <p>Continue your learning journey</p>
+                    </div>
+                    <div class="dashboard__stats">
+                        <div class="stat-card">
+                            <div class="stat-card__icon">🎯</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value" id="completionPercentage">0%</span>
+                                <span class="stat-card__label">Profile Complete</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">📚</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value" id="skillsLearned">0</span>
+                                <span class="stat-card__label">Skills Learned</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">🏆</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value" id="totalXP">0</span>
+                                <span class="stat-card__label">Total XP</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">🔥</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value" id="streakDays">0</span>
+                                <span class="stat-card__label">Day Streak</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard__content">
+                    <div class="next-actions">
+                        <h3>Recommended Next Steps</h3>
+                        <div id="nextStepsContainer">
+                            <div class="action-item">
+                                <div class="action-item__icon">📋</div>
+                                <div class="action-item__content">
+                                    <h4>Complete Skills Assessment</h4>
+                                    <p>Tell us about your skills to get personalized recommendations</p>
+                                </div>
+                                <button class="btn btn--primary btn--sm" onclick="showSection('skills-assessment')">Start</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-chart">
+                        <h3>Your Progress Overview</h3>
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Skills Section with 150 courses -->
+        <section id="skills" class="section section--skills hidden">
+            <div class="skills-learn">
+                <div class="skills__header">
+                    <h2>Master 150+ Skills</h2>
+                    <p>Complete courses across multiple categories to advance your career</p>
+                    <div class="skills-filter">
+                        <button class="filter-btn active" data-filter="all">All Courses (150)</button>
+                        <button class="filter-btn" data-filter="recommended">🌟 Recommended</button>
+                        <button class="filter-btn" data-filter="skill-gap">🎯 Skill Gap</button>
+                        <button class="filter-btn" data-filter="suggested">💡 Suggested</button>
+                    </div>
+                </div>
+
+                <div class="skills-categories" id="skillsContainer">
+                    <!-- All 150 courses will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="section section--profile hidden">
+            <div class="profile">
+                <div class="profile__header">
+                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <span id="profileInitials">U</span>
+                        </div>
+                        <div class="profile-details">
+                            <h2 id="profileName">User Name</h2>
+                            <p id="profileEmail">user@example.com</p>
+                            <p id="profileStatus">Complete your profile</p>
+                        </div>
+                    </div>
+                    <button class="btn btn--outline" onclick="editProfile()">Edit Profile</button>
+                </div>
+
+                <div class="profile__content">
+                    <div class="profile-nav">
+                        <button class="profile-nav__item active" data-tab="basic-info">🔹 Basic Information</button>
+                        <button class="profile-nav__item" data-tab="skills-info">🔹 Skill Information</button>
+                        <button class="profile-nav__item" data-tab="skills-analysis">🔹 Skills Assessment Results</button>
+                        <button class="profile-nav__item" data-tab="recommendations">🔹 AI Recommendations</button>
+                    </div>
+
+                    <div class="profile-tabs">
+                        <!-- Basic Information Tab -->
+                        <div class="profile-tab active" id="basic-info">
+                            <h3>🔹 Basic Information</h3>
+                            <div class="profile-form">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="profile-name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="profile-email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="profile-phone">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" class="form-control" id="profile-location" placeholder="City, Country">
+                                </div>
+                                <button class="btn btn--primary" onclick="saveProfileTab('basic-info')">Save Basic Information</button>
+                            </div>
+                        </div>
+
+                        <!-- Skills Information Tab -->
+                        <div class="profile-tab hidden" id="skills-info">
+                            <h3>🔹 Selected Skills</h3>
+                            <div id="selectedSkillsDisplay">
+                                <p>Complete your skills assessment to view your selected skills here.</p>
+                                <button class="btn btn--primary" onclick="showSection('skills-assessment')">Complete Skills Assessment</button>
+                            </div>
+                        </div>
+
+                        <!-- Skills Analysis Results -->
+                        <div class="profile-tab hidden" id="skills-analysis">
+                            <h3>🔹 Skills Assessment Results</h3>
+                            <div id="skillAnalysisResults">
+                                <p>Complete your skills assessment to view detailed analysis.</p>
+                                <button class="btn btn--primary" onclick="showSection('skills-assessment')">Complete Assessment</button>
+                            </div>
+                        </div>
+
+                        <!-- AI Recommendations -->
+                        <div class="profile-tab hidden" id="recommendations">
+                            <h3>🔹 AI Recommendations</h3>
+                            <div id="aiRecommendationsDisplay">
+                                <p>Complete your skills assessment to receive personalized AI recommendations.</p>
+                                <button class="btn btn--primary" onclick="showSection('skills-assessment')">Get Recommendations</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="section section--resume hidden">
+            <div class="resume-builder">
+                <div class="resume__header">
+                    <h2>Resume Builder</h2>
+                    <p>Create a professional resume based on your comprehensive profile</p>
+                </div>
+
+                <div class="resume-template">
+                    <div class="resume-preview" id="resumePreview">
+                        <div class="resume-section">
+                            <h3 id="resumeName">Your Name</h3>
+                            <p id="resumeEmail">your.email@example.com</p>
+                        </div>
+                        
+                        <div class="resume-section">
+                            <h4>Professional Summary</h4>
+                            <p id="resumeSummary">Professional summary will be generated based on your profile.</p>
+                        </div>
+
+                        <div class="resume-section">
+                            <h4>Skills</h4>
+                            <div id="resumeSkills">
+                                <p>Complete your profile to populate this section.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resume-actions">
+                        <button class="btn btn--primary" onclick="generateResume()">Generate Resume</button>
+                        <button class="btn btn--outline" onclick="downloadResume()">Download PDF</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
